@@ -10,15 +10,18 @@
 #
 #
 # Ingores any warning messages
-import pyaudio
+import pyaudio 
 import speech_recognition as sr
 import os
-import datetime
+import datetimepi
 import warnings
 import calendar
 import random
 import wikipedia
 from gtts import gTTS
+import sys
+print(sys.version)
+print(sys.executable)
 
 # Ingores any warning messages
 warnings.filterwarnings("ignore")
