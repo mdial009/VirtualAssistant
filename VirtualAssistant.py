@@ -58,9 +58,11 @@ def assistantResponse(text):
 
 # A Function For Wake Word(s) or Phrase
 def wakeWord(text):
-    WAKE_WORDS = ["Hey Madany"]  # A list of Wake Words
+    WAKE_WORDS = ["Hey Madany", "Hey Madani", "hey madani"]  # A list of Wake Words
 
-    text = text.lower()  # Converting The Text To All Lower Case Words
+    text = (
+        text.lower() or text.capitalize()
+    )  # Converting The Text To All Lower Case Words
 
     # Check To See If The Users Command/Text Contains A Wake Word/Phrase
     for phrase in WAKE_WORDS:
@@ -156,7 +158,73 @@ def greeting(text):
     return ""
 
 
-text = "HEY Nafissatou Kante I LOVE YOU SO MUCH IS THIS NOT AWESOME RIGHT??"
-assistantResponse(text)
-recordAudio()
-print(getDate())
+# A Function To Get A Persons First And Last Name From the Text
+def getPerson(text):
+
+    wordList = text.split()  # Splitting The Text Into A List Of Words
+
+    for i in range(0, len(wordList)):
+        if (
+            i + 3 <= len(wordList) - 1
+            and wordList[i].lower() == "who"
+            and wordList[i + 1].lower() == "is"
+        ):
+            return wordList[i + 2] + " " + wordList[i + 3]
+
+
+while True:
+    # Record The Audio
+    text = recordAudio()
+    response = " "
+
+    # Check For The Wake Word/Phrase
+    if wakeWord(text) == True:
+        # print("You Said The Wake Word/Phrase")
+
+        # Check For Greetings By The User
+        response = response + greeting(text)
+
+        # Check To See If The User Said Anything Having To Do With The Date
+        if "date" in text:
+            get_date = getDate()
+            response = response + " " + get_date
+
+        # Check To See If The User Said "Who Is"
+        if "who is" in text:
+            person = getPerson(text)
+            wiki = wikipedia.summary(person, sentences=2)
+            response = response + " " + wiki
+
+        # Check To See If The User Said Anything Having To Do With The Time
+        if "time" in text:
+            now = datetime.datetime.now()
+            meridiem = ""
+            if now.hour >= 12:
+                meridiem = "P.M"  # Post Meridiem (PM) After Midday
+                hour = now.hour - 12
+            else:
+                meridiem = "A.M"  # Ante Meridiem (AM) Before Midday
+                hour = now.hour
+
+            if now.minute < 10:
+                minute = "0" + str(now.minute)
+            else:
+                minute = str(now.minute)
+            response = (
+                response
+                + " "
+                + "It Is"
+                + str(hour)
+                + ":"
+                + minute
+                + " "
+                + meridiem
+                + "."
+            )
+        # Have The Assistant Respond Back Using Audio And The Text From Response
+        assistantResponse(response)
+
+# text = "Hey I LOVE YOU SO MUCH IS THIS NOT AWESOME RIGHT??"
+# assistantResponse(text)
+# recordAudio()
+# print(getDate())
