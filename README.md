@@ -5,35 +5,35 @@ This is a Virtual Assistant program that gets the date, current time, Respond ba
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for testing purposes
 
-### Prerequisites
+## Prerequisites
 
-Python3
-VSCode
+* Python3
+* VSCode
 
 # Libraries
 
 Pyaudio
-https://pypi.org/project/PyAudio/
+* https://pypi.org/project/PyAudio/
 
 SpeechRecognition
-https://pypi.org/project/SpeechRecognition/
+* https://pypi.org/project/SpeechRecognition/
 
 gTTS
-https://pypi.org/project/gTTS/
+* https://pypi.org/project/gTTS/
 
 datetime
-https://pypi.org/project/DateTime/
+* https://pypi.org/project/DateTime/
 
 Wikipedia
-https://pypi.org/project/wikipedia/
+* https://pypi.org/project/wikipedia/
 
 Calendar
-pip install calendar in terminal
+* pip install calendar in terminal
 
 ### Installing
-1: Clone The Repo
-2: Run it on your terminal
-3: First Say the wakeword(Hey Madany or hey madani) followed by a who is(Firstname, Lastname) or (date/time)
+* 1: Clone The Repo
+* 2: Run it on your terminal
+* 3: First Say the wakeword(Hey Madany or hey madani) followed by a who is(Firstname, Lastname) or (date/time)
 
 ## What I Learned
 Doing this project I learned how to use the pyaduio library to be able to easily use Python to play and record audio to be able to record audio.
